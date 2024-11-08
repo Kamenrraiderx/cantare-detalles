@@ -1,0 +1,127 @@
+.parallax{
+    position:relative;
+    height: 80vh;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+
+
+.layer{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bg{
+    background-position: bottom center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.animate{
+    position: relative;
+    bottom: -20px;
+    animation: hiddenText 1s forwards;
+
+}
+
+@keyframes hiddenText{
+    0%{
+        bottom: -100px;
+    }
+    100%{
+        bottom: 0px;
+    }
+}
+
+
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.cont{
+    position: relative;
+    width: 200%;
+    display: flex;
+    transition: 0.5s;
+
+    height: 100%;
+}
+
+.tabs{
+    height: 100%;
+}
+
+.tabs input{
+    visibility: hidden;
+    display:none;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.buttons label{
+    width: 20px;    
+    height: 20px;
+    background: #fff;
+    opacity: 0.5;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.tabs input:nth-child(1):checked ~ .buttons label:nth-child(1),
+.tabs input:nth-child(2):checked ~ .buttons label:nth-child(2),
+.tabs input:nth-child(3):checked ~ .buttons label:nth-child(3){
+    opacity: 1;
+    width: 50px;
+}
+
+.slide{
+    height: 100%;
+    position: relative;
+    width: 100%;
+    
+}
+
+.content .box{
+    position:relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.tabs input:nth-child(1):checked ~ .cont {
+    left: 0;
+}
+.tabs input:nth-child(2):checked ~ .cont {
+    left: -100%;
+}
