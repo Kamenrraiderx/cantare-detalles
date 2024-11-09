@@ -1,49 +1,52 @@
-import styles from '@/styles/parallax.module.css';
-import Image from 'next/image';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
+'use client'
 
-export function ParallaxCarousel() {
+import { useRef, useEffect } from 'react'
+import Image from 'next/image'
 
+export  function ParallaxCarousel() {
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const backgroundRef = useRef<HTMLDivElement>(null)
 
-    return (
-        <div className='my-20'>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (carouselRef.current && backgroundRef.current) {
+        const { top, height } = carouselRef.current.getBoundingClientRect()
+        const windowHeight = window.innerHeight
 
-            <Carousel className=" h-[70vh]" orientation="horizontal">
-                <CarouselPrevious aria-label="Ir al anterior" />
+        // Check if the carousel is in the viewport
+        if (top < windowHeight && top + height > 0) {
+          const scrollPosition = window.scrollY - top
+          const parallaxEffect = scrollPosition * 0.5 // Adjust this value to control the parallax intensity
 
-                <CarouselContent className="h-[70vh]">
-                    <CarouselItem >
-                        <Slide image='/images/homeImage.jpg' content='Creamos modelos especificos para cada necesidad ajustado a tu presupuesto' title='DE TU CABEZA A LA REALIDAD' />
-                    </CarouselItem>
-                </CarouselContent>
+          backgroundRef.current.style.transform = `translateY(${parallaxEffect}px)`
+        }
+      }
+    }
 
-                <CarouselNext aria-label="Ir al siguiente" />
-            </Carousel>
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <div ref={carouselRef} className="relative h-[80vh] overflow-hidden mb-14">
+      <div 
+        ref={backgroundRef} 
+        className="absolute inset-0 w-full h-full"
+      >
+        <Image
+          src="/images/homeImage.jpg"
+          alt="Fondo del carrusel"
+          layout="fill"
+          objectFit="cover"
+          className="w-full h-full"
+        />
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="max-w-md p-6 text-white">
+          <h2 className="text-4xl font-bold mb-4 text-center">CANTARE</h2>
+          <h2 className="text-4xl font-bold mb-4 text-center">detalles</h2>
         </div>
-    );
-}
-
-function Slide({ title, content, image }: { title: string; content: string; image: string }) {
-    return (
-        <div className={`${styles.box} ${styles.slide}`}>
-            <div className={`${styles.layer} ${styles.bg}`} data-speed="-0.5">
-                <Image src={image} alt='' fill />
-            </div>
-            <div className={`${styles.layer} ${styles.content}`} data-speed="0.9">
-                <div className="w-2/3">
-                    <div className="relative overflow-hidden">
-                        <h4 className={`text-6xl font-bold text-white ${styles.animate}`}>
-                            {title}
-                        </h4>
-                    </div>
-                    <div className="relative overflow-hidden">
-                        <p className={`text-xl text-white my-8 ${styles.animate}`}>
-                            {content}
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
+      </div>
+    </div>
+  )
 }
