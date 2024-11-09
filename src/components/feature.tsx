@@ -1,11 +1,10 @@
 
 'use client'
 
-import { ForwardRefExoticComponent, RefAttributes, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import { Info, LucideProps } from 'lucide-react'
 import { CircleUser, Gem, SquarePen } from "lucide-react";
-export function Feature({ title, image1, image2, icon }: { title: string, image1: string, image2: string, icon: "circle"|"gem"|"square" }) {
+export function Feature({ title, image1, icon }: { title: string, image1: string, icon: "circle"|"gem"|"square" }) {
     const [isHovered, setIsHovered] = useState(false)
     const Icons = {
         "circle":CircleUser,

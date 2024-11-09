@@ -16,7 +16,6 @@ export default function OrderFeature({
   imageAlt,
   title,
   content,
-  className,
   imagePosition
 }: FeatureHighlightProps) {
   return (
