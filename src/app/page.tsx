@@ -12,9 +12,9 @@ export default function Home() {
         <ParallaxCarousel />
       </div>
       <div className="lg:px-60 flex gap-3 md:flex-row flex-col">
-        <Feature image1="/images/createYourBucket.jpg"  title="Crea tu ramo" icon="square"/>
-        <Feature image1="/images/specialDetails.jpg"  title="Detalles especiales" icon="gem"/>
-        <Feature image1="/images/aboutMe.jpg"  title="Conoceme" icon="circle"/>
+        <Feature image1="/images/createYourBucket.jpg"  title="Crea tu ramo" icon="square" />
+        <Feature image1="/images/specialDetails.jpg"  title="Detalles especiales" icon="gem" />
+        <Feature image1="/images/aboutMe.jpg"  title="Conoceme" icon="circle" />
       </div>
 
 
