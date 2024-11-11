@@ -1,15 +1,16 @@
+'use client'
 import ItemCard from "@/components/item";
 import Title from "@/components/title";
-//import FloralPagination from "@/components/ui/floral-pagination";
-//import { useState } from "react";
+import FloralPagination from "@/components/ui/floral-pagination";
+import { useState } from "react";
 
 export default function SpecialDetailsPage() {
-    //const [currentPage, setCurrentPage] = useState(1)
-    //const totalPages = 10
+    const [currentPage, setCurrentPage] = useState(1)
+    const totalPages = 10
 
-    //const handlePageChange = (page: number) => {
-    //    setCurrentPage(page)
-    //}
+    const handlePageChange = (page: number) => {
+       setCurrentPage(page)
+    }
     return (
         <div className="my-20">
             <Title title="Detalles Especiales" />
@@ -51,15 +52,12 @@ export default function SpecialDetailsPage() {
                     <ItemCard imageUrl="/images/homeImage.jpg" price={200} title="Perritos" name="flower_bouquet" />
                 </div>
             </div>
-            {
-                /* 
+
                 
                 
             <div className="flex justify-center w-full items-center mt-20">
                 <FloralPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </div>
-            */
-        }
         </div>
     )
 }

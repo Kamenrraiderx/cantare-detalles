@@ -31,7 +31,7 @@ export default async function Page({ params }: PageParams) {
     const detailsData: Details = {
         flower_bouquet: {
             name: "Ramo de Rosas",
-            images: ["/images/roses.jpg", "/images/roses.jpg"],
+            images: ["/images/roses.jpg", "/images/specialDetails.jpg"],
             discount: 10,
             originalPrice: 100,
             rating: 4.5,
@@ -50,7 +50,7 @@ export default async function Page({ params }: PageParams) {
     };
 
     const details: Details = detailsData; // No es necesario usar Record<string, Details>
-    const detail = params.detail;
+    const detail = await params.detail;
     const detailData = details[detail];
 
     if (!detailData) {
@@ -67,8 +67,8 @@ export default async function Page({ params }: PageParams) {
 
 
     return (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 overflow-y-auto">
-            <div className="container mx-auto px-4 py-8">
+        <div className="  bg-background/80 backdrop-blur-sm z-50 overflow-y-auto my-20">
+            <div className="container lg:mx-auto lg:px-4 py-8">
                 <div className="bg-white rounded-lg shadow-lg max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
                         {/* Left Column - Image Carousel */}

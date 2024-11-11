@@ -21,12 +21,12 @@ export function Navbar({ cartItems = 3 }: { cartItems?: number }) {
             <Link href="/create-your-bouquet" className="text-gray-700 hover:text-gray-900">Crea tu ramo</Link>
             <Link href="/special-details" className="text-gray-700 hover:text-gray-900">Detalles especiales</Link>
             <Link href="/aboutme" className="text-gray-700 hover:text-gray-900">Conoceme</Link>
-            <div className="relative">
+            <Link href='/shoping-cart' className="relative">
               <ShoppingCart className="h-6 w-6 text-gray-700" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                 {cartItems}
               </span>
-            </div>
+            </Link>
           </div>
           <div className="md:hidden flex items-center">
             <Button variant="ghost" size="icon" onClick={toggleMenu}>
@@ -38,13 +38,13 @@ export function Navbar({ cartItems = 3 }: { cartItems?: number }) {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Crea tu ramo</Link>
+            <Link href="create-your-bouquet" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Crea tu ramo</Link>
             <Link href="/special-details" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Detalles especiales</Link>
             <Link href="/aboutme" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Conoceme</Link>
-            <div className="flex items-center px-3 py-2">
+            <Link href='/shoping-cart' className="flex items-center px-3 py-2">
               <ShoppingCart className="h-6 w-6 text-gray-700 mr-2" />
               <span className="text-gray-700">Cart ({cartItems})</span>
-            </div>
+            </Link>
           </div>
         </div>
       )}
