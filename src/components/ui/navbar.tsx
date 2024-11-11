@@ -4,10 +4,13 @@ import { useState } from 'react'
 import { ShoppingCart, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { getJsonCookie } from '@/utils/jsonCookie.utils'
 
 export function Navbar({ cartItems = 3 }: { cartItems?: number }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  const detailNumber = getJsonCookie('detail')?.length || 0
+  const bouquetNumber = getJsonCookie('personalizedBouquet')?.length || 0
+  
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
@@ -24,7 +27,7 @@ export function Navbar({ cartItems = 3 }: { cartItems?: number }) {
             <Link href='/shoping-cart' className="relative">
               <ShoppingCart className="h-6 w-6 text-gray-700" />
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {cartItems}
+                {detailNumber + bouquetNumber}
               </span>
             </Link>
           </div>
@@ -43,7 +46,7 @@ export function Navbar({ cartItems = 3 }: { cartItems?: number }) {
             <Link href="/aboutme" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Conoceme</Link>
             <Link href='/shoping-cart' className="flex items-center px-3 py-2">
               <ShoppingCart className="h-6 w-6 text-gray-700 mr-2" />
-              <span className="text-gray-700">Cart ({cartItems})</span>
+              <span className="text-gray-700">Cart ({detailNumber + bouquetNumber})</span>
             </Link>
           </div>
         </div>

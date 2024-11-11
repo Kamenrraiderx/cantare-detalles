@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
-import detailsData from '@/data/detailsData.json';
-import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Heart, Share2, ShoppingCart } from 'lucide-react'
+import { Heart, Share2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ImageCarousel } from '@/components/image-carousel';
+import CartNotificationModal from '@/components/cart-notification-modal';
+import detailJSONData from '@/data/detailsData.json'
 interface PageParams {
     params: {
         detail: string;
@@ -26,28 +26,8 @@ interface Details {
 }
 
 export default async function Page({ params }: PageParams) {
-
-    // Asegúrate de que detailsData tenga la estructura correcta
-    const detailsData: Details = {
-        flower_bouquet: {
-            name: "Ramo de Rosas",
-            images: ["/images/roses.jpg", "/images/specialDetails.jpg"],
-            discount: 10,
-            originalPrice: 100,
-            rating: 4.5,
-            reviews: 150,
-            sales: 500
-        },
-        succulent_set: {
-            name: "Colección de Suculentas",
-            images: ["/images/roses.jpg", "/images/roses.jpg"],
-            discount: 15,
-            originalPrice: 80,
-            rating: 4.7,
-            reviews: 210,
-            sales: 320
-        }
-    };
+    const detailsData: Details =  detailJSONData
+ 
 
     const details: Details = detailsData; // No es necesario usar Record<string, Details>
     const detail = await params.detail;
@@ -130,12 +110,7 @@ export default async function Page({ params }: PageParams) {
                                 <div className="space-y-4">
 
                                     <div className="flex gap-4">
-                                        <Button
-                                            className="flex-1"
-                                            variant="outline"
-                                        >
-                                            Agregar al carrito
-                                        </Button>
+                                        <CartNotificationModal product={detail} orderType='detail'/>
                                     </div>
                                 </div>
                             </div>

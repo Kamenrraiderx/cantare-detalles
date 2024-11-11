@@ -1,60 +1,72 @@
 {
     "flower_bouquet": {
-        "name": "Ramo de Rosas Clásico",
+        "name": "Base en la forma de perrito con Rosa",
         "images": [
-            "https://example.com/images/ramo_rosas_1.jpg",
-            "https://example.com/images/ramo_rosas_2.jpg"
+            "/images/roses.jpg",
+            "/images/roses.jpg"
         ],
-        "discount": 10,
-        "originalPrice": 120,
+        "discount": 0,
+        "originalPrice": 335.00,
         "rating": 4.5,
         "reviews": 150,
         "sales": 500
     },
     "succulent_set": {
-        "name": "Colección de Suculentas",
+        "name": "Arreglo decorativo",
         "images": [
-            "https://example.com/images/suculentas_1.jpg",
-            "https://example.com/images/suculentas_2.jpg"
+            "/images/roses.jpg",
+            "/images/roses.jpg"
         ],
         "discount": 15,
-        "originalPrice": 80,
+        "originalPrice": 680.00,
         "rating": 4.7,
         "reviews": 210,
         "sales": 320
     },
     "lavender_bundle": {
-        "name": "Ramillete de Lavanda Aromática",
+        "name": "Cajita Sorpresa",
         "images": [
-            "https://example.com/images/lavanda_1.jpg",
-            "https://example.com/images/lavanda_2.jpg"
+            "/images/roses.jpg",
+            "/images/roses.jpg"
         ],
         "discount": 5,
-        "originalPrice": 50,
+        "originalPrice": 880.00,
         "rating": 4.4,
         "reviews": 180,
         "sales": 220
     },
     "flower_arrangement": {
-        "name": "Arreglo de Flores Exóticas",
+        "name": "Caja con gomitas pequeña",
         "images": [
-            "https://example.com/images/arreglo_exotico_1.jpg",
-            "https://example.com/images/arreglo_exotico_2.jpg"
+            "/images/roses.jpg",
+            "/images/roses.jpg"
         ],
         "discount": 20,
-        "originalPrice": 200,
+        "originalPrice": 505.00,
         "rating": 4.6,
         "reviews": 120,
         "sales": 150
     },
     "mini_cactus": {
-        "name": "Cactus Miniatura en Maceta",
+        "name": "Caja con gomitas grande",
         "images": [
-            "https://example.com/images/cactus_1.jpg",
-            "https://example.com/images/cactus_2.jpg"
+            "/images/roses.jpg",
+            "/images/roses.jpg"
         ],
         "discount": 10,
-        "originalPrice": 30,
+        "originalPrice": 715.00,
+        "rating": 4.3,
+        "reviews": 80,
+        "sales": 300
+    },
+    "letters": {
+        "name": "Caja con gomitas grande",
+        "images": [
+            "/images/roses.jpg",
+            "/images/roses.jpg"
+        ],
+        "discount": 10,
+        "originalPrice": 995.00,
         "rating": 4.3,
         "reviews": 80,
         "sales": 300

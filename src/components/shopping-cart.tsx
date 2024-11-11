@@ -6,22 +6,45 @@ import { Minus, Plus, Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import detailJSONData from '@/data/detailsData.json'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { getJsonCookie } from '@/utils/jsonCookie.utils'
 
 interface CartItem {
-  id: string
+  discount:number
   name: string
-  price: number
+  originalPrice: number
+  rating:number
+  reviews:number
   quantity: number
-  image: string
+  images: string[]
+  sales:number
 }
+
+interface Detail {
+  name: string;
+  images: string[];  // Arreglo de imágenes de tipo string
+  discount: number;
+  originalPrice: number;
+  rating: number;
+  reviews: number;
+  sales: number;
+}
+
+interface Details {
+  [key: string]: Detail;
+}
+
+
 
 // Simula la obtención de datos del carrito desde una cookie
 const getCartFromCookie = (): CartItem[] => {
-  return [
-    { id: '1', name: 'Bolso Floral', price: 89.99, quantity: 1, image: '/placeholder.svg?height=100&width=100&text=Bolso' },
-    { id: '2', name: 'Cartera Elegante', price: 59.99, quantity: 2, image: '/placeholder.svg?height=100&width=100&text=Cartera' },
-  ]
+  const detail = getJsonCookie('detail') as string[]
+
+
+  const detailsData: Details =  detailJSONData
+
+  return detail?.map((key)=>{return {quantity: 1,...detailsData[key]}})
 }
 
 export default function ShoppingCart() {
@@ -33,17 +56,18 @@ export default function ShoppingCart() {
     setCartItems(getCartFromCookie())
   }, [])
 
-  const updateQuantity = (id: string, newQuantity: number) => {
+  const updateQuantity = (name: string, newQuantity: number) => {
     setCartItems(cartItems.map(item => 
-      item.id === id ? { ...item, quantity: Math.max(0, newQuantity) } : item
+      item.name === name ? { ...item, quantity: Math.max(0, newQuantity) } : item
     ).filter(item => item.quantity > 0))
   }
 
-  const removeItem = (id: string) => {
-    setCartItems(cartItems.filter(item => item.id !== id))
+  const removeItem = (name: string) => {
+    setCartItems(cartItems.filter(item => item.name !== name))
+
   }
 
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const total = cartItems.reduce((sum, item) => sum + item.originalPrice * item.quantity, 0)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -65,9 +89,9 @@ export default function ShoppingCart() {
           <CardContent>
             <ul className="space-y-4">
               {cartItems.map((item) => (
-                <li key={item.id} className="flex items-center space-x-4 py-2 border-b">
+                <li key={item.name} className="flex items-center space-x-4 py-2 border-b">
                   <Image
-                    src={item.image}
+                    src={item.images[0]}
                     alt={item.name}
                     width={80}
                     height={80}
@@ -75,13 +99,13 @@ export default function ShoppingCart() {
                   />
                   <div className="flex-grow">
                     <h3 className="font-semibold">{item.name}</h3>
-                    <p className="text-sm text-gray-500">${item.price.toFixed(2)}</p>
+                    <p className="text-sm text-gray-500">L{item.originalPrice.toFixed(2)}</p>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() => updateQuantity(item.name, item.quantity - 1)}
                       aria-label="Disminuir cantidad"
                     >
                       <Minus className="h-4 w-4" />
@@ -90,7 +114,7 @@ export default function ShoppingCart() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => updateQuantity(item.name, item.quantity + 1)}
                       aria-label="Aumentar cantidad"
                     >
                       <Plus className="h-4 w-4" />
@@ -99,7 +123,7 @@ export default function ShoppingCart() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(item.name)}
                     aria-label="Eliminar item"
                   >
                     <Trash2 className="h-4 w-4" />

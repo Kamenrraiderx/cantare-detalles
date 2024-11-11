@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
+import { setJsonCookie } from '@/utils/jsonCookie.utils'
+import CartNotificationModal from './cart-notification-modal'
 
 type Selection = {
     size?: { name: string; price: number };
@@ -44,34 +46,38 @@ const extras = [
 export default function FlowerBouquetCreator() {
     const [step, setStep] = useState(1)
     const [selection, setSelection] = useState<Selection>({})
+    
+    
     const onSubmit = async () => {
-        try {
-            const response = await fetch('/api/email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
+        // try {
+        //     const response = await fetch('/api/email', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
 
-                    receipients: [
-                        {
-                            name: 'Prueba',
-                            address: 'alejandro.reyes95@yahoo.com',
-                        },
-                    ],
+        //             receipients: [
+        //                 {
+        //                     name: 'Prueba',
+        //                     address: 'alejandro.reyes95@yahoo.com',
+        //                 },
+        //             ],
 
 
-                }),
-            });
+        //         }),
+        //     });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+        //     if (!response.ok) {
+        //         throw new Error('Network response was not ok');
+        //     }
 
-            const result = await response.json();
-        } catch (error) {
-            console.error('Se produjo un error:', error);
-        }
+        //     const result = await response.json();
+        // } catch (error) {
+        //     console.error('Se produjo un error:', error);
+        // }
+
+        setJsonCookie('persolanizedBouquet',selection)
 
     };
 
@@ -270,7 +276,7 @@ export default function FlowerBouquetCreator() {
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button onClick={() => onSubmit()} className="w-full">Confirmar pedido</Button>
+                            <CartNotificationModal product={selection} orderType='personalizedBouquet'/>
                         </CardFooter>
                     </Card>
                 )

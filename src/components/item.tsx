@@ -13,7 +13,7 @@ export default function ItemCard({ imageUrl, title, price, name }: ItemCardProps
   return (
     <Link
       className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out group transform hover:shadow-xl"
-      href={`/special-details/flower_bouquet`}
+      href={`/special-details/${name}`}
     >
       <div className="relative overflow-hidden aspect-square">
         <Image
