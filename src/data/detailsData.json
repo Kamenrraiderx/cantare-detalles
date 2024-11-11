@@ -1,0 +1,62 @@
+{
+    "flower_bouquet": {
+        "name": "Ramo de Rosas Clásico",
+        "images": [
+            "https://example.com/images/ramo_rosas_1.jpg",
+            "https://example.com/images/ramo_rosas_2.jpg"
+        ],
+        "discount": 10,
+        "originalPrice": 120,
+        "rating": 4.5,
+        "reviews": 150,
+        "sales": 500
+    },
+    "succulent_set": {
+        "name": "Colección de Suculentas",
+        "images": [
+            "https://example.com/images/suculentas_1.jpg",
+            "https://example.com/images/suculentas_2.jpg"
+        ],
+        "discount": 15,
+        "originalPrice": 80,
+        "rating": 4.7,
+        "reviews": 210,
+        "sales": 320
+    },
+    "lavender_bundle": {
+        "name": "Ramillete de Lavanda Aromática",
+        "images": [
+            "https://example.com/images/lavanda_1.jpg",
+            "https://example.com/images/lavanda_2.jpg"
+        ],
+        "discount": 5,
+        "originalPrice": 50,
+        "rating": 4.4,
+        "reviews": 180,
+        "sales": 220
+    },
+    "flower_arrangement": {
+        "name": "Arreglo de Flores Exóticas",
+        "images": [
+            "https://example.com/images/arreglo_exotico_1.jpg",
+            "https://example.com/images/arreglo_exotico_2.jpg"
+        ],
+        "discount": 20,
+        "originalPrice": 200,
+        "rating": 4.6,
+        "reviews": 120,
+        "sales": 150
+    },
+    "mini_cactus": {
+        "name": "Cactus Miniatura en Maceta",
+        "images": [
+            "https://example.com/images/cactus_1.jpg",
+            "https://example.com/images/cactus_2.jpg"
+        ],
+        "discount": 10,
+        "originalPrice": 30,
+        "rating": 4.3,
+        "reviews": 80,
+        "sales": 300
+    }
+}
