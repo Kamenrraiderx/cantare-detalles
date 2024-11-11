@@ -24,7 +24,8 @@ export async function POST(request: NextRequest) {
 
     }catch(error){
         return NextResponse.json({
-            message:"No fue posible enviar el formulario"
+            message:"No fue posible enviar el formulario",
+            error
         },{
             status:500
         })

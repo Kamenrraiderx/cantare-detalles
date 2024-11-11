@@ -40,7 +40,7 @@ interface Details {
 // Simula la obtención de datos del carrito desde una cookie
 const getCartFromCookie = (): CartItem[] => {
   const detail = getJsonCookie('detail') as string[]
-
+  console.log(detail)
 
   const detailsData: Details =  detailJSONData
 
@@ -53,7 +53,7 @@ export default function ShoppingCart() {
   const [phone, setPhone] = useState('')
 
   useEffect(() => {
-    setCartItems(getCartFromCookie())
+    setCartItems(getCartFromCookie()||[])
   }, [])
 
   const updateQuantity = (name: string, newQuantity: number) => {
@@ -67,7 +67,7 @@ export default function ShoppingCart() {
 
   }
 
-  const total = cartItems.reduce((sum, item) => sum + item.originalPrice * item.quantity, 0)
+  const total = cartItems?.reduce((sum, item) => sum + item.originalPrice * item.quantity, 0) || 0
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { X, ShoppingCart, Check } from 'lucide-react'
+import {  ShoppingCart, Check } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { setJsonCookie } from '@/utils/jsonCookie.utils'

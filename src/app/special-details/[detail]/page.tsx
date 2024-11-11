@@ -5,11 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { ImageCarousel } from '@/components/image-carousel';
 import CartNotificationModal from '@/components/cart-notification-modal';
 import detailJSONData from '@/data/detailsData.json'
-interface PageParams {
-    params: {
-        detail: string;
-    };
-}
+
 
 interface Detail {
     name: string;
@@ -25,18 +21,20 @@ interface Details {
     [key: string]: Detail;
 }
 
-export default async function Page({ params }: PageParams) {
-    const detailsData: Details =  detailJSONData
- 
+export default async function Page({
+    params,
+  }: {
+    params: Promise<{ detail: string }>
+  }) {
+    const detailsData: Details = detailJSONData;
 
-    const details: Details = detailsData; // No es necesario usar Record<string, Details>
-    const detail = await params.detail;
-    const detailData = details[detail];
+    const detail = (await params);
+    console.log(detail)
+    const detailData = detailsData[detail.detail];
 
     if (!detailData) {
         return notFound();
     }
-
 
     const discountPercentage = Math.round(
         ((detailData.originalPrice - detailData.discount) / detailData.originalPrice) * 100
@@ -52,8 +50,8 @@ export default async function Page({ params }: PageParams) {
                 <div className="bg-white rounded-lg shadow-lg max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
                         {/* Left Column - Image Carousel */}
-                        
-                        <ImageCarousel images={detailData.images} name={detailData.name}/>
+
+                        <ImageCarousel images={detailData.images} name={detailData.name} />
 
                         {/* Right Column - Product Details */}
                         <div className="space-y-6">
@@ -110,7 +108,7 @@ export default async function Page({ params }: PageParams) {
                                 <div className="space-y-4">
 
                                     <div className="flex gap-4">
-                                        <CartNotificationModal product={detail} orderType='detail'/>
+                                        <CartNotificationModal product={detail.detail} orderType='detail' />
                                     </div>
                                 </div>
                             </div>

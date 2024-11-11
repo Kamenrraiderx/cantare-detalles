@@ -9,6 +9,10 @@ export function setJsonCookie(name: string, data: object|string, days = 7) {
 }
 
 export function getJsonCookie(name: string): Array<object|string> | null {
-  const cookieMatch = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  let cookieMatch = null;
+  if (typeof document !== 'undefined') {
+    cookieMatch = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    // Safely use document here
+  }
   return cookieMatch ? JSON.parse(decodeURIComponent(cookieMatch[2])) : null;
 }
